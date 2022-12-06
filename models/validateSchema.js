@@ -18,6 +18,7 @@ const schemaUpdateStatus = Joi.object({
   favorite: Joi.string().required(),
 });
 
+
 module.exports = {
   schemaAddContacts,
   schemaUpdateContacts,
