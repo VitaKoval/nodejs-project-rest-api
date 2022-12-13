@@ -1,71 +1,78 @@
 ## GoIT Node.js Course Template Homework
 
-- hw02 (створення роутів оробки запитів)
-- hw03 (MongoDB, графический редактор MongoDB Compass, створення бази данних)
-- hw04
+MongoDB 6.0 [https://www.mongodb.com/home] - нереляционная база данных типа NoSQL
+Cors [https://www.npmjs.com/package/cors] - CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options
+Express [https://www.npmjs.com/package/express] - фрейм-форк с методами HTTP и промежуточными обработчиками, чтобы создать надежный API
 
-  ## POST api/users/signup
+Mongoose [https://mongoosejs.com/] - elegant mongodb object modeling for node.js
+Joi [https://softchris.github.io/pages/joi.html#introducing-joi] - awesome code validation for Node.js and Express
+jsonwebtoken [https://www.npmjs.com/package/jsonwebtoken] - An implementation of JSON Web Tokens
+Multer [https://github.com/expressjs/multer] - Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency
+Gravatar [https://www.npmjs.com/package/gravatar] - библиотека, которая генерирует URL аватарок
+Jimp [https://www.npmjs.com/package/jimp] - обработчик файлов "JavaScript Image Manipulation Program"
 
-  req.body:
-  {"email": "vita@i.ua",
-  "password": "123456"}
+## POST api/users/signup
 
-  response:
-  "user": {
-  "email": "elsa@i.ua",
-  "subscription": "starter"
-  }
+req.body:
+{"email": "vita@i.ua",
+"password": "123456"}
 
-  ## POST api/users/login
+response:
+"user": {
+"email": "elsa@i.ua",
+"subscription": "starter"
+}
 
-  req.body:
-  {
-  "email": "den@i.ua",
-  "password": "654321"
-  }
-  response:
-  {
-  "token": "user token",
-  "user": {
-  "email": "den@i.ua",
-  "subscription": "starter"
-  }
-  }
+## POST api/users/login
 
-  ## GET api/users/logout
+req.body:
+{
+"email": "den@i.ua",
+"password": "654321"
+}
+response:
+{
+"token": "user token",
+"user": {
+"email": "den@i.ua",
+"subscription": "starter"
+}
+}
 
-  Authorization: "Bearer {{token}}"
+## GET api/users/logout
 
-  response:
-  Status: 204 No Content
+Authorization: "Bearer {{token}}"
 
-  ## GET api/users/current
+response:
+Status: 204 No Content
 
-  Authorization: "Bearer {{token}}"
+## GET api/users/current
 
-  response:
-  {
-  "email": "example@example.com",
-  "subscription": "starter"
-  }
+Authorization: "Bearer {{token}}"
 
-  ## PATCH api/users
+response:
+{
+"email": "example@example.com",
+"subscription": "starter"
+}
 
-  Authorization: "Bearer {{token}}"
-  req.body: {
-  "subscription" : "['starter', 'pro', 'business']"
-  }
+## PATCH api/users
 
-  response: {
-  "email": "den@i.ua",
-  "subscription": "pro"
-  }
+Authorization: "Bearer {{token}}"
+req.body: {
+"subscription" : "['starter', 'pro', 'business']"
+}
 
-  ## PATCH api/users/avatars
+response: {
+"email": "den@i.ua",
+"subscription": "pro"
+}
 
-  Content-Type: multipart/form-data
-  Authorization: "Bearer {{token}}"
-  req.body: завантажений файл
+## PATCH api/users/avatars
+
+Content-Type: multipart/form-data
+Authorization: "Bearer {{token}}"
+req.body: завантажений файл
 
 response:{
 "avatarURL": посилання на зображення

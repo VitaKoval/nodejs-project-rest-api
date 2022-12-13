@@ -1,7 +1,7 @@
 const Jimp = require("jimp");
 // перезаписуємо файл в тимчасовій папці на новий, з новими розмірами
 const jimpForAvatars = async (req, res, next) => {
-  const { path: tempDir, originalname } = req.file;
+  const { path: tempDir} = req.file;
 
   await Jimp.read(tempDir)
     .then((file) =>

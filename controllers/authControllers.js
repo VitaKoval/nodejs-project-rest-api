@@ -2,10 +2,10 @@ const { User, subscriptionSchema } = require("../models/user");
 const { HttpError } = require("../helpers/HttpError");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const gravatar = require('gravatar');
+const gravatar = require("gravatar");
 const path = require("path");
 const fs = require("fs/promises");
-const Jimp = require('jimp');
+const Jimp = require("jimp");
 
 require("dotenv").config();
 
@@ -23,7 +23,11 @@ const signup = async (req, res) => {
   const hashPassword = await bcrypt.hash(password, 10);
   const avatarURL = gravatar.url(email);
 
-  const newUser = await User.create({ email, password: hashPassword, avatarURL});
+  const newUser = await User.create({
+    email,
+    password: hashPassword,
+    avatarURL,
+  });
 
   res.status(201).json({
     user: {
@@ -55,7 +59,6 @@ const login = async (req, res) => {
   const token = jwt.sign(payload, SECRET_KEY, { expiresIn: "23h" });
   // зберігаємо токен в БД при логіні Юзера
   const result = await User.findByIdAndUpdate(user._id, { token });
-  // console.log(token);
 
   res.status(200).json({
     token,
@@ -67,12 +70,9 @@ const login = async (req, res) => {
   });
 };
 
-
-
 const avatar = async (req, res) => {
   const { _id } = req.user;
   const { path: tempDir, originalname } = req.file;
-  // console.log(req.file);
 
   const avatarDir = path.join(__dirname, "../", "public", "avatars");
   const uploadName = `${_id}_${originalname}`;
@@ -83,11 +83,8 @@ const avatar = async (req, res) => {
   const avatarURL = path.join("avatars", uploadName);
   await User.findByIdAndUpdate(_id, { avatarURL });
 
-  // console.log("uploadDir", uploadDir);
-
-  res.status(200).json({ avatarURL })
-}
-
+  res.status(200).json({ avatarURL });
+};
 
 const current = async (req, res) => {
   const { email, subscription } = req.user;
