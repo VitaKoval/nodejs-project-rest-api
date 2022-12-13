@@ -61,6 +61,16 @@
   "subscription": "pro"
   }
 
+  ## PATCH api/users/avatars
+
+  Content-Type: multipart/form-data
+  Authorization: "Bearer {{token}}"
+  req.body: завантажений файл
+
+response:{
+"avatarURL": посилання на зображення
+}
+
 ## GET api/contacts
 
 Authorization: "Bearer {{token}}"

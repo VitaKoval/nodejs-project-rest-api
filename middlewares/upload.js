@@ -2,7 +2,7 @@
 const path = require("path");
 const multer = require("multer");
 
-const tempDir = path.join(__dirname, "../", "temp");
+const tempDir = path.join(__dirname, "../", "tmp");
 
 // налаштування для міделвари multer
 const multerConfig = multer.diskStorage({
