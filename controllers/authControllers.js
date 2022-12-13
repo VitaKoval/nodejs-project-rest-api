@@ -2,6 +2,9 @@ const { User, subscriptionSchema } = require("../models/user");
 const { HttpError } = require("../helpers/HttpError");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const gravatar = require('gravatar');
+const path = require("path");
+const fs = require("fs/promises");
 
 require("dotenv").config();
 
@@ -17,8 +20,9 @@ const signup = async (req, res) => {
   }
   // хешуємо пароль
   const hashPassword = await bcrypt.hash(password, 10);
+  const avatarURL = gravatar.url(email);
 
-  const newUser = await User.create({ email, password: hashPassword });
+  const newUser = await User.create({ email, password: hashPassword, avatarURL});
 
   res.status(201).json({
     user: {
@@ -55,11 +59,29 @@ const login = async (req, res) => {
   res.status(200).json({
     token,
     user: {
+      avatarURL: user.avatarURL,
       email: user.email,
       subscription: user.subscription,
     },
   });
 };
+
+
+
+const avatar = async (req, res) => {
+  const { _id } = req.user;
+  const { path: tempDir, originalname } = req.file;
+
+  const avatarDir = path.join(__dirname, "../", "public", "avatars");
+  const uploadDir = path.join(avatarDir, originalname);
+
+  await fs.rename(tempDir, uploadDir);
+
+  const avatarURL = path.join("avatars", originalname);
+  await User.findByIdAndUpdate(_id, { avatarURL });
+
+  res.status(200).json({avatarURL})
+}
 
 const current = async (req, res) => {
   const { email, subscription } = req.user;
@@ -85,6 +107,7 @@ const updateSubscription = async (req, res) => {
 module.exports = {
   signup,
   login,
+  avatar,
   current,
   logout,
   updateSubscription,
