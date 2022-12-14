@@ -1,4 +1,4 @@
-## GoIT Node.js Course Template Homework
+## Node.js
 
 MongoDB 6.0 [https://www.mongodb.com/home] - нереляционная база данных типа NoSQL
 Cors [https://www.npmjs.com/package/cors] - CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options
@@ -7,9 +7,12 @@ Express [https://www.npmjs.com/package/express] - фрейм-форк с мет�
 Mongoose [https://mongoosejs.com/] - elegant mongodb object modeling for node.js
 Joi [https://softchris.github.io/pages/joi.html#introducing-joi] - awesome code validation for Node.js and Express
 jsonwebtoken [https://www.npmjs.com/package/jsonwebtoken] - An implementation of JSON Web Tokens
-Multer [https://github.com/expressjs/multer] - Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files. It is written on top of busboy for maximum efficiency
+Multer [https://github.com/expressjs/multer] - пакет для завантаження файлів на сервер Multer
 Gravatar [https://www.npmjs.com/package/gravatar] - библиотека, которая генерирует URL аватарок
 Jimp [https://www.npmjs.com/package/jimp] - обработчик файлов "JavaScript Image Manipulation Program"
+
+Jest [https://jestjs.io/ru/docs/getting-started] - фреймворк для тест тестування
+SuperTest [https://www.npmjs.com/package/supertest] - пакет для виконання тестів, а саме абстракція(шмітація) запитів на сервер
 
 ## POST api/users/signup
 
@@ -195,14 +198,6 @@ response:
 "owner": "6389cc8239a9f6652ae0f6c7",
 "\_\_v": 0
 }
-
-## ctrlAuthenticate - мідлвара перевірки токена (авторизації) додана до всіх маршрутів, які мають бути захищені
-
-- hw05
-
-## Пакет для завантаження файлів на сервер Multer [https://github.com/expressjs/multer]
-
-- hw06
 
 ### Команди:
 
