@@ -1,65 +1,85 @@
-## GoIT Node.js Course Template Homework
+## Node.js
 
-- hw02 (створення роутів оробки запитів)
-- hw03 (MongoDB, графический редактор MongoDB Compass, створення бази данних)
-- hw04
+MongoDB 6.0 [https://www.mongodb.com/home] - нереляционная база данных типа NoSQL
+Cors [https://www.npmjs.com/package/cors] - CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options
+Express [https://www.npmjs.com/package/express] - фрейм-форк с методами HTTP и промежуточными обработчиками, чтобы создать надежный API
 
-  ## POST api/users/signup
+Mongoose [https://mongoosejs.com/] - elegant mongodb object modeling for node.js
+Joi [https://softchris.github.io/pages/joi.html#introducing-joi] - awesome code validation for Node.js and Express
+jsonwebtoken [https://www.npmjs.com/package/jsonwebtoken] - An implementation of JSON Web Tokens
+Multer [https://github.com/expressjs/multer] - пакет для завантаження файлів на сервер Multer
+Gravatar [https://www.npmjs.com/package/gravatar] - библиотека, которая генерирует URL аватарок
+Jimp [https://www.npmjs.com/package/jimp] - обработчик файлов "JavaScript Image Manipulation Program"
 
-  req.body:
-  {"email": "vita@i.ua",
-  "password": "123456"}
+Jest [https://jestjs.io/ru/docs/getting-started] - фреймворк для тест тестування
+SuperTest [https://www.npmjs.com/package/supertest] - пакет для виконання тестів, а саме абстракція(шмітація) запитів на сервер
 
-  response:
-  "user": {
-  "email": "elsa@i.ua",
-  "subscription": "starter"
-  }
+## POST api/users/signup
 
-  ## POST api/users/login
+req.body:
+{"email": "vita@i.ua",
+"password": "123456"}
 
-  req.body:
-  {
-  "email": "den@i.ua",
-  "password": "654321"
-  }
-  response:
-  {
-  "token": "user token",
-  "user": {
-  "email": "den@i.ua",
-  "subscription": "starter"
-  }
-  }
+response:
+"user": {
+"email": "elsa@i.ua",
+"subscription": "starter"
+}
 
-  ## GET api/users/logout
+## POST api/users/login
 
-  Authorization: "Bearer {{token}}"
+req.body:
+{
+"email": "den@i.ua",
+"password": "654321"
+}
+response:
+{
+"token": "user token",
+"user": {
+"email": "den@i.ua",
+"subscription": "starter"
+}
+}
 
-  response:
-  Status: 204 No Content
+## GET api/users/logout
 
-  ## GET api/users/current
+Authorization: "Bearer {{token}}"
 
-  Authorization: "Bearer {{token}}"
+response:
+Status: 204 No Content
 
-  response:
-  {
-  "email": "example@example.com",
-  "subscription": "starter"
-  }
+## GET api/users/current
 
-  ## PATCH api/users
+Authorization: "Bearer {{token}}"
 
-  Authorization: "Bearer {{token}}"
-  req.body: {
-  "subscription" : "['starter', 'pro', 'business']"
-  }
+response:
+{
+"email": "example@example.com",
+"subscription": "starter"
+}
 
-  response: {
-  "email": "den@i.ua",
-  "subscription": "pro"
-  }
+## PATCH api/users
+
+Authorization: "Bearer {{token}}"
+req.body: {
+"subscription" : "['starter', 'pro', 'business']"
+}
+
+response: {
+"email": "den@i.ua",
+"subscription": "pro"
+}
+
+## PATCH api/users/avatars
+
+Content-Type: multipart/form-data
+Authorization: "Bearer {{token}}"
+req.body: завантажений файл
+
+response:{
+"avatarURL": посилання на зображення
+}
 
 ## GET api/contacts
 
@@ -178,11 +198,6 @@ response:
 "owner": "6389cc8239a9f6652ae0f6c7",
 "\_\_v": 0
 }
-
-## ctrlAuthenticate - мідлвара перевірки токена (авторизації) додана до всіх маршрутів, які мають бути захищені
-
-- hw05
-- hw06
 
 ### Команди:
 

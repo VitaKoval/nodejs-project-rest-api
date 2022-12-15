@@ -3,13 +3,15 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
-const connectMongo = mongoose.connect(process.env.MONGO_URL);
+const { MONGO_URL, PORT } = process.env;
+
+const connectMongo = mongoose.connect(MONGO_URL);
 
 connectMongo
   .then(() => {
     console.log("Database connection successful");
-    app.listen(process.env.PORT, () => {
-      console.log(`Server running. Use our API on port: ${process.env.PORT}`);
+    app.listen(PORT, () => {
+      console.log(`Server running. Use our API on port: ${PORT}`);
     });
   })
   .catch((err) =>
