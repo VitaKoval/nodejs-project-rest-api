@@ -85,6 +85,18 @@ response: {
 message: 'Verification successful'
 }
 
+## POST api/users/verify
+
+<!-- повторна верифікація email нового користувача -->
+
+req.body: {
+"email": "example@example.com"
+}
+
+response: {
+"message": "Verification email sent"
+}
+
 ## PATCH api/users/avatars
 
 Content-Type: multipart/form-data

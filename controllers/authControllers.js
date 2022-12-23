@@ -7,10 +7,11 @@ const gravatar = require("gravatar");
 const path = require("path");
 const fs = require("fs/promises");
 const { v4: uuidv4 } = require("uuid");
+const { createVerifyEmail } = require("../helpers/createVerifyEmail");
 
 require("dotenv").config();
 
-const { SECRET_KEY, BASE_URL } = process.env;
+const { SECRET_KEY } = process.env;
 
 const signup = async (req, res) => {
   const { email, password } = req.body;
@@ -33,11 +34,7 @@ const signup = async (req, res) => {
     verificationToken,
   });
 
-  const verifyEmail = {
-    to: email,
-    subject: "Verify",
-    html: `<a target='_blank' href="${BASE_URL}/api/users/verify/${verificationToken}">Click verify you email</a>`,
-  };
+  const verifyEmail = createVerifyEmail(email, verificationToken);
 
   await sendEmail(verifyEmail);
 
@@ -63,13 +60,27 @@ const verify = async (req, res) => {
     verificationToken: "",
   });
 
-  res.status(200).json({message: 'Verification successful'})
+  res.status(200).json({ message: "Verification successful" });
 };
 
 const resendVerify = async (req, res) => {
+  const { email } = req.body;
 
-}
+  const user = await User.findOne({ email });
 
+  if (!user) {
+    throw HttpError(404, "Email or password is wrong");
+  }
+  if (!user.verify) {
+    throw HttpError(400, "Verification has already been passed");
+  }
+
+  const verifyEmail = createVerifyEmail(email, user.verificationToken);
+
+  await sendEmail(verifyEmail);
+
+  res.status(200).json({ message: "Verification email sent" });
+};
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -88,7 +99,7 @@ const login = async (req, res) => {
 
   // якщо НЕ веріфіковано - користувач не зможе залогінитись
   if (!user.verify) {
-    throw HttpError(401, "Email not verify")
+    throw HttpError(401, "Email not verify");
   }
 
   const payload = {
