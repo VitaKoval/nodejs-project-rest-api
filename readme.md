@@ -14,6 +14,10 @@ Jimp [https://www.npmjs.com/package/jimp] - обработчик файлов "J
 Jest [https://jestjs.io/ru/docs/getting-started] - фреймворк для тест тестування
 SuperTest [https://www.npmjs.com/package/supertest] - пакет для виконання тестів, а саме абстракція(шмітація) запитів на сервер
 
+SendGrid [https://sendgrid.com/] - посередник для відправки email. За допомогою цього сервісу роблю верификацію email користувача після регістрації (на пошту користувача приходить email з проханням підтвердити реєстрацію)
+
+Uuid [https://www.npmjs.com/package/uuid] - створення унікального id
+
 ## POST api/users/signup
 
 req.body:
@@ -69,6 +73,28 @@ req.body: {
 response: {
 "email": "den@i.ua",
 "subscription": "pro"
+}
+
+## GET api/users/verify/:verificationToken
+
+req.body: {
+"email": "den@i.ua"
+}
+
+response: {
+message: 'Verification successful'
+}
+
+## POST api/users/verify
+
+<!-- повторна верифікація email нового користувача -->
+
+req.body: {
+"email": "example@example.com"
+}
+
+response: {
+"message": "Verification email sent"
 }
 
 ## PATCH api/users/avatars
